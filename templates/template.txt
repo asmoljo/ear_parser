@@ -1,0 +1,15 @@
+        <resource-ref>
+                <description>DataSource za transakcije</description>
+                <res-ref-name>PARAMETAR_BLOK_1</res-ref-name>
+                <res-type>javax.sql.DataSource</res-type>
+                <res-auth>Container</res-auth>
+                <res-sharing-scope>Shareable</res-sharing-scope>
+        </resource-ref>
+        <resource-ref >
+                <description>JCA za poziv CICS-a</description>
+                <res-ref-name>PARAMETAR_BLOK_2</res-ref-name>
+                <res-type>javax.resource.cci.ConnectionFactory</res-type>
+                <res-auth>Container</res-auth>
+                <res-sharing-scope>Shareable</res-sharing-scope>
+        </resource-ref>
+

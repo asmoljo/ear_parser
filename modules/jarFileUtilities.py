@@ -8,7 +8,7 @@ java_home = os.environ['JAVA_HOME']
 jar_bin = java_home+'bin/jar'
 
 
-def extractFromJarFile(jarFile, extractFile):
+def extract_from_jar_file(jarFile, extractFile):
     try:
         extract = subprocess.check_call([jar_bin, '-xf', jarFile, extractFile])
         if not os.path.exists(extractFile):

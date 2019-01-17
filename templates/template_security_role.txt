@@ -1,0 +1,3 @@
+	<security-role>
+		<role-name>All Role</role-name>
+	</security-role>
