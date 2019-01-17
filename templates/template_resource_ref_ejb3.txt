@@ -1,18 +1,17 @@
 		<enterprise-beans >
+
 			<session>
 				<ejb-name>Controller</ejb-name>
 				<ejb-class>
 					hr.vestigo.framework.controller.ejb.Controller
 				</ejb-class>
 				<resource-ref>
-					<description />
-
-					<res-ref-name>PARAMETAR_DATASOURCE_NAME</res-ref-name>
+				    <description>Database connection resource reference 1<description/>
+					<res-ref-name>RES_REF_NAME_CONTROLLER_DATASOURCE</res-ref-name>
 					<res-type>javax.sql.DataSource</res-type>
 					<res-auth>Container</res-auth>
 					<res-sharing-scope>Shareable</res-sharing-scope>
 				</resource-ref>
-  		
 			</session>
   	
 			<session>
@@ -21,14 +20,12 @@
 					hr.vestigo.framework.controller.lookup.ejb.wrapper.LookUpEjb
 				</ejb-class>
 				<resource-ref>
-					<description />
-
-					<res-ref-name>PARAMETAR_DATASOURCE_NAME</res-ref-name>
+				    <description>Database connection resource reference 2<description/>
+					<res-ref-name>RES_REF_NAME_CONTROLLER_DATASOURCE</res-ref-name>
 					<res-type>javax.sql.DataSource</res-type>
 					<res-auth>Container</res-auth>
 					<res-sharing-scope>Shareable</res-sharing-scope>
 				</resource-ref>
-  		
 			</session>
   	
 		</enterprise-beans>

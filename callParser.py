@@ -12,6 +12,7 @@ from modules import textFileUtilities, jarFileUtilities
 
 hfs_home = os.environ['HFS_HOME']
 template_dir = hfs_home+'/bin/ear_parser/templates/'
+properties_build_file_path = hfs_home+'/config/properties.build'
 
 def help():
     print '\nSkripta se mora pokrenuti u HFS_HOME folderu!'
@@ -24,7 +25,7 @@ def help():
 def main():
     try:
         if sys.argv[2] == 'zaba':
-            #textFileUtilities.test1()
+
             textFileUtilities.recreate_tmp_directory('tmp')
             textFileUtilities.change_working_directory('tmp')
 
@@ -37,27 +38,26 @@ def main():
             textFileUtilities.search_and_replace_in_file('META-INF/application.xml', 'META-INF/application.xml', '>/dc<', '>cash<')
 
             if not textFileUtilities.search_in_file('WEB-INF/web.xml','security-role'):
-                textFileUtilities.add_in_file_from_template('META-INF/application.xml',os.path.join(template_dir, 'template_security_role.txt'),'</application>','before')
-                textFileUtilities.add_in_file_from_template('WEB-INF/web.xml',os.path.join(template_dir, 'template_security_role_and_constrain.txt'),'</web-app>', 'before')
+                textFileUtilities.add_text_block_to_file_from_template('META-INF/application.xml', os.path.join(template_dir, 'template_security_role.txt'), '</application>', 'before')
+                textFileUtilities.add_text_block_to_file_from_template('WEB-INF/web.xml', os.path.join(template_dir, 'template_security_role_and_constrain.txt'), '</web-app>', 'before')
 
-
-
-
-
-
+            textFileUtilities.add_text_block_to_file_from_template_with_parameters('META-INF/ejb-jar.xml', os.path.join(template_dir, 'template_resource_ref_ejb3.txt'), properties_build_file_path, ['RES_REF_NAME_CONTROLLER_DATASOURCE'], '<display-name>spray-controller-ejb</display-name>', 'after' )
 
         elif sys.argv[2] == 'cg':
             print 'CG parse'
+
+        elif sys.argv[2] == 'test':
+            print textFileUtilities.add_text_block_to_file_from_template_with_parameters('META-INF/ejb-jar.xml', os.path.join(template_dir, 'template_resource_ref_ejb3.txt'), properties_build_file_path, ['RES_REF_NAME_CONTROLLER_DATASOURCE'])
 
         else:
             print 'Ne postoji aplikacija: %s' % sys.argv[2]
 
     except IndexError, e:
-        print 'Index greska: %s' % e
+        print '\nIndex greska: %s' % e
         help()
         return False
     except Exception, e:
-        print 'Greska: %s' % e
+        print '\nGreska: %s' % e
         help()
         return False
 
