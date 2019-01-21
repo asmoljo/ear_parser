@@ -78,13 +78,22 @@ def zaba():
     #textFileModule.add_text_block_to_file_from_template_with_parameters('META-INF/ejb-jar.xml', os.path.join(TEMPLATE_DIR, 'template_resource_ref_ejb3.txt'), PROPERTIES_BUILD_FILE_PATH, ['RES_REF_NAME_CONTROLLER_DATASOURCE'], '<display-name>spray-controller-ejb</display-name>', 'after')
     tfmgr.add_text_block_to_file_from_template_with_parameters('META-INF/ejb-jar.xml', 'template_resource_ref_ejb3.txt', ['RES_REF_NAME_CONTROLLER_DATASOURCE'], '<display-name>spray-controller-ejb</display-name>', 'after')
 
+    jfmgr.add_to_jar_file('spray-web.war', 'WEB-INF/web.xml')
+    jfmgr.add_to_jar_file('spray-controller-ejb.jar', 'META-INF/ejb-jar.xml')
+    jfmgr.add_to_jar_file('../' + sys.argv[1], 'META-INF/application.xml')
+    jfmgr.add_to_jar_file('../' + sys.argv[1], 'spray-web.war')
+    jfmgr.add_to_jar_file('../' + sys.argv[1], 'spray-controller-ejb.jar')
+
+    tfmgr.change_working_directory('../')
+    tfmgr.recreate_tmp_directory('tmp')
+
 
 def ccms():
     print 'CCMS parse'
 
 
 def test():
-    jfmgr.extract_from_jar_file('../fs' + sys.argv[1], 'META-INF/application.xml')
+    jfmgr.extract_from_jar_file('../' + sys.argv[1], 'META-INF/application.xml')
 
 
 
