@@ -24,6 +24,7 @@ class JarFileManager:
     def extract_from_jar_file(self, jar_file, extract_file):
         try:
             extract = subprocess.check_call([self.jar_bin, '-xf', jar_file, extract_file])
+            self.logger.info('extraktana datoteka: ' + extract_file)
         except Exception, e:
             self.logger.error(e)
             sys.exit(1)
@@ -31,6 +32,7 @@ class JarFileManager:
     def add_to_jar_file(self, jar_file, add_file):
         try:
             add = subprocess.check_call([self.jar_bin, '-fu', jar_file, add_file])
+            self.logger.info('zapakirana datoteka: ' + add_file)
         except Exception, e:
             self.logger.error(e)
             sys.exit(1)

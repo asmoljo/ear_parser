@@ -30,7 +30,7 @@ class TextFileManager():
     def change_working_directory(self, dir):
         try:
             os.chdir(dir)
-            print '== Radni direktorij je %s' % os.getcwd()
+            self.logger.info('Radni direktorij je %s' % os.getcwd())
         except Exception, e:
             self.logger.error(e)
             sys.exit(1)
@@ -39,9 +39,9 @@ class TextFileManager():
     def recreate_tmp_directory(self, directory):
         try:
             shutil.rmtree(directory, ignore_errors=True)  # True da ne baca gresku ako ne postoji direktorij
-            print '== Obrisan je direktorij %s' % directory
+            self.logger.info('Obrisan je direktorij %s' % directory)
             os.mkdir(directory, 0755)
-            print '== Kreiran je direktorij %s' % directory
+            self.logger.info('Kreiran je direktorij %s' % directory)
         except Exception, e:
             self.logger.error(e)
             sys.exit(1)
@@ -67,7 +67,7 @@ class TextFileManager():
             w = open(file_to_save, 'w')
             w.write(f.replace(search, replace))
             w.close()
-            print 'Izmjena texta napravljena u datoteci %s.' % file_to_save
+            self.logger.info('Izmjena texta napravljena u datoteci %s.' % file_to_save)
             return True
 
         except Exception, e:
@@ -94,7 +94,7 @@ class TextFileManager():
                 else:
                     print line,  # zarez znaci da se ne ispisuje nova prazna linija poslije komande 'print'(sto python inace radi)
 
-            print 'Text iz templatea "%s" dodan u datoteku "%s".' % (template_file_name, file_to_add)
+            self.logger.info('Text iz templatea "%s" dodan u datoteku "%s".' % (template_file_name, file_to_add))
             return True
 
         except Exception, e:
@@ -120,7 +120,7 @@ class TextFileManager():
                 else:
                     print line,  # zarez znaci da se ne ispisuje nova prazna linija poslije komande 'print'(sto python inace radi)
 
-            print 'Text iz templatea "%s" dodan u datoteku "%s".' % (template_file_name, file_to_add)
+            self.logger.info('Text iz templatea "%s" dodan u datoteku "%s".' % (template_file_name, file_to_add))
             return True
         except Exception, e:
             self.logger.error(e)
