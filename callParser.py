@@ -52,9 +52,6 @@ def main():
 
 def zaba():
 
-    #textFileModule.recreate_tmp_directory('tmp')
-    #textFileModule.change_working_directory('tmp')
-
     tfmgr.recreate_tmp_directory('tmp')
     tfmgr.change_working_directory('tmp')
 
@@ -64,18 +61,13 @@ def zaba():
     jfmgr.extract_from_jar_file('spray-web.war', 'WEB-INF/web.xml')
     jfmgr.extract_from_jar_file('spray-controller-ejb.jar', 'META-INF/ejb-jar.xml')
 
-    #textFileModule.search_and_replace_in_file('META-INF/application.xml', 'META-INF/application.xml', '>/dc<', '>cash<')
     tfmgr.search_and_replace_in_file('META-INF/application.xml', 'META-INF/application.xml', '>/dc<', '>cash<')
 
-    #if not textFileModule.search_in_file('WEB-INF/web.xml', 'security-role'):
-    #    textFileModule.add_text_block_to_file_from_template('META-INF/application.xml', os.path.join(TEMPLATE_DIR, 'template_security_role.txt'), '</application>', 'before')
-    #    textFileModule.add_text_block_to_file_from_template('WEB-INF/web.xml', os.path.join(TEMPLATE_DIR, 'template_security_role_and_constrain.txt'), '</web-app>', 'before')
 
     if not tfmgr.search_in_file('WEB-INF/web.xml', 'security-role'):
         tfmgr.add_text_block_to_file_from_template('META-INF/application.xml', 'template_security_role.txt', '</application>', 'before')
         tfmgr.add_text_block_to_file_from_template('WEB-INF/web.xml', 'template_security_role_and_constrain.txt', '</web-app>', 'before')
 
-    #textFileModule.add_text_block_to_file_from_template_with_parameters('META-INF/ejb-jar.xml', os.path.join(TEMPLATE_DIR, 'template_resource_ref_ejb3.txt'), PROPERTIES_BUILD_FILE_PATH, ['RES_REF_NAME_CONTROLLER_DATASOURCE'], '<display-name>spray-controller-ejb</display-name>', 'after')
     tfmgr.add_text_block_to_file_from_template_with_parameters('META-INF/ejb-jar.xml', 'template_resource_ref_ejb3.txt', ['RES_REF_NAME_CONTROLLER_DATASOURCE'], '<display-name>spray-controller-ejb</display-name>', 'after')
 
     jfmgr.add_to_jar_file('spray-web.war', 'WEB-INF/web.xml')

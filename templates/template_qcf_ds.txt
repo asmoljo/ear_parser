@@ -1,0 +1,40 @@
+		<session id="SESSION_ID">
+			<ejb-name>FULL_BEAN</ejb-name>
+			<business-local>PATH.SESSION_IDLocal</business-local>
+			<business-remote>PATH.SESSION_IDRemote</business-remote>
+			<ejb-class>PATH.FULL_BEAN</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<resource-ref>
+				<res-ref-name>QCF1</res-ref-name>
+				<res-type>javax.jms.QueueConnectionFactory</res-type>
+				<res-auth>Container</res-auth>
+				<res-sharing-scope>Shareable</res-sharing-scope>
+			</resource-ref>
+			<resource-ref>
+				<res-ref-name>QCF2</res-ref-name>
+				<res-type>javax.jms.QueueConnectionFactory</res-type>
+				<res-auth>Container</res-auth>
+				<res-sharing-scope>Shareable</res-sharing-scope>
+			</resource-ref>
+			<resource-ref>
+				<res-ref-name>QCF3</res-ref-name>
+				<res-type>javax.jms.QueueConnectionFactory</res-type>
+				<res-auth>Container</res-auth>
+				<res-sharing-scope>Shareable</res-sharing-scope>
+			</resource-ref>
+			<resource-ref>
+				<description>My Database connection resource reference 1</description>
+				<res-ref-name>DSC1</res-ref-name>
+				<res-type>javax.sql.DataSource</res-type>
+				<res-auth>Container</res-auth>
+				<res-sharing-scope>Shareable</res-sharing-scope>
+			</resource-ref>
+			<resource-ref>
+				<description>My Database connection resource reference 2</description>
+				<res-ref-name>DSC2</res-ref-name>
+				<res-type>javax.sql.DataSource</res-type>
+				<res-auth>Container</res-auth>
+				<res-sharing-scope>Shareable</res-sharing-scope>
+			</resource-ref>
+		</session>
